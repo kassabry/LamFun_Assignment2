@@ -1,0 +1,14 @@
+val newCList = \e.
+    let val a = new [] in
+    a := [e,a];
+    a;;
+	
+val next = \a.
+    case !a of {
+		[e, a'] -> a'
+	};;
+	
+val get = \a.
+	case !a of {
+		[e, a'] -> e
+	};;
