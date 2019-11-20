@@ -1,0 +1,41 @@
+val newCList = \e.
+    let val a = new [] in
+    a := [e,a];
+    a;;
+	
+val next = \a.
+    case !a of {
+		[e, a'] -> a'
+	};;
+	
+val get = \a.
+	case !a of {
+		[e, a'] -> e
+	};;
+
+val insert = \e. \a.
+	let val t =  new[] in
+	let val b = new [] in 
+	b := [e, next a];
+	a := [e, b];
+	b;;
+
+val delete = \a. 
+	case !a of {
+		[e, a] -> "Empty List",
+		_ -> let val t = new [] in
+			 let val s = new [] in 
+			 t := next (next a);
+			 a := [e, t];
+			 s := next a;
+			 s := [e, s]
+	};;
+  
+--work in progress
+val update = \e. \a.
+	while a != next a do
+		case !a of {
+			a-> a:=[e,a];
+			_-> a:= next a
+		}; 
+	};;
