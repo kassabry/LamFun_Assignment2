@@ -2,35 +2,42 @@ val newCList = \e.
     let val a = new [] in
     a := [e,a];
     a;;
-
--- complete the following functions
-
--- val insert = \e. \a.
-	let val t =  next a;
-	let val b = new [] in 
-	b := [e, t];
-	a := [e, b];
-	b;;
-
--- val delete = \a. 
-	case !a of {
-		[e, a] -> "Empty List",
-		_ -> let val t = next(next a);
-			 a := [e, t];
-			 let val s = next a;
-			 s := [e, s]
-
--- val next = \a.
+	
+val next = \a.
     case !a of {
 		[e, a'] -> a'
 	};;
-
--- val get = \a.
+	
+val get = \a.
 	case !a of {
 		[e, a'] -> e
 	};;
 
--- val update = \e. \a. 
+val insert = \e. \a.
+	let val t =  new[] in
+	let val b = new [] in 
+	b := [e, next a];
+	a := [get a, b];
+	b;;
+	
+val delete = \a. 
+	case [a == next a] of {
+		[true] -> "empty list",
+		_ -> let val t = new [] in
+			 let val s = new [] in 
+			 t := next (next a);
+			 a := [get a, t];
+			 s := next a;
+			 s := [0, s]
+	};;
+  
+val update = \e. \a.
+	let val t = new [] in
+	t := [e, next a];
+	case !a of {
+		a -> t
+	};;
+
 
 -- after completing the functions above
 -- the code below should run 

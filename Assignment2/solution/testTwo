@@ -20,6 +20,14 @@ val insert = \e. \a.
 	a := [e, b];
 	b;;
 
+val insert = \e. \a.
+	let val t = new [] in
+	let val b = new [] in 
+	case !a of {
+		[e', a] ->  b := [e, next a];
+				   a := [e', b];
+	};;
+
 val delete = \a. 
 	case !a of {
 		[e, a] -> "Empty List",
@@ -31,11 +39,7 @@ val delete = \a.
 			 s := [e, s]
 	};;
   
---work in progress
 val update = \e. \a.
-	while a != next a do
-		case !a of {
-			a-> a:=[e,a];
-			_-> a:= next a
-		}; 
+	case !a of {
+		a -> [e, a]
 	};;
