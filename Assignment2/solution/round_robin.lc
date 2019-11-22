@@ -32,11 +32,8 @@ val delete = \a.
 	};;
   
 val update = \e. \a.
-	let val t = new [] in
-	t := [e, next a];
-	case !a of {
-		a -> t
-	};;
+	a:=[e, next a]t
+	;;
 
 
 -- after completing the functions above
